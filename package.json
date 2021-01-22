@@ -1,0 +1,37 @@
+{
+  "name": "haxroomie-monorepo",
+  "scripts": {
+    "start": "node packages/haxroomie-cli",
+    "test": "mocha ./packages/haxroomie-core/test",
+    "docs": "jsdoc ./packages/haxroomie-core/index.js ./packages/haxroomie-core/src/Haxroomie.js ./packages/haxroomie-core/src/room/RoomController.js ./packages/haxroomie-core/src/room/components/PluginController.js ./packages/haxroomie-core/src/room/components/RepositoryController.js ./assets/docs/HOMEPAGE.md -c ./assets/docs/jsdoc.config.js",
+    "publish": "npm run docs && npm run format && git add . && git commit -m 'pre-release commit' && git push && lerna publish",
+    "format": "eslint --fix ./packages",
+    "bootstrap": "lerna bootstrap"
+  },
+  "author": "Oskari Pöntinen <mail.morko@gmail.com>",
+  "license": "MIT",
+  "bin": {
+    "haxroomie": "./packages/haxroomie-cli/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morko/haxroomie.git"
+  },
+  "engines": {
+    "node": ">=10.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "foodoc": "0.0.9",
+    "jsdoc": "^3.6.3",
+    "lerna": "^3.19.0",
+    "mocha": "^5.2.0",
+    "prettier": "1.19.1",
+    "sinon": "^6.3.5"
+  },
+  "dependencies": {}
+}
