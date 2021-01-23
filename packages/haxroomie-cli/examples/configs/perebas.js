@@ -1,17 +1,50 @@
-﻿// Stats: "Auth" : '["0-Games", "1-Wins", "2-Draws", "3-Losses", "4-Winrate", "5-Goals", "6-Assists", "7-GK", "8-CS", "9-CS%", "10-Role", "11-Nick"]'
+// Stats: "Auth" : '["0-Games", "1-Wins", "2-Draws", "3-Losses", "4-Winrate", "5-Goals", "6-Assists", "7-GK", "8-CS", "9-CS%", "10-Role", "11-Nick"]'
 
 /* VARIABLES */
 
 /* ROOM */
-
-const roomName = "Futsal X3 dos PEREBAS - PRÓ=BAN";
-const botName = "Juiz";
-const roomPublic = true;
-var room = HBInit({ roomName: roomName, playerName: botName, public:true, maxPlayers: 15, geo : {
-code: 'br',
-lon: -51.9,
-lat: -14.2
-} });
+let config = {
+  pub: {
+    autoStart: true,
+    roomName: `Futsal X3 dos PEREBAS - PRÓ=BAN`,
+    playerName: `Juiz`,
+    maxPlayers: 15,
+    public: true,
+    repositories: [
+      // salamini's repository from https://github.com/morko/hhm-sala-plugins
+      {
+        type: 'github',
+        repository: 'DiMarinho/hhm-sala-plugins',
+      },
+    ],
+    pluginConfig: {
+      // uncomment the 'sav/roles' property if you want admin passwords
+      /*
+      'sav/roles': {
+        roles: {
+          // get admin priviledges with !auth admin adminpass
+          admin: `adminpass`,
+          // get host priviledges with !auth host hostpass
+          host: `hostpass`
+        }
+      },
+      */
+      // spam protection
+      'hr/spam': {},
+      // ensures room always has an admin
+      'hr/always-one-admin': {},
+      // allows players to pause writing 'p'
+      'hr/pause': {
+        // tells this plugin that players can pause 1 time per game
+        maxPauseTimes: 1,
+      },
+      // keeps track of banned players and has some commands for players with
+      // admin or host priviledges
+      'hr/kickban': {},
+    },
+  },
+};
+module.exports = config;
 
 
 const scoreLimitClassic = 3;
